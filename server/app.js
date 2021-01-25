@@ -1,6 +1,8 @@
+require("dotenv").config();
 let express = require('express');
 const app = express();
 const sequelize = require('./db');
+
 let journal = require('./controllers/journalcontroller');
 let user = require('./controllers/usercontroller');
 
@@ -10,8 +12,14 @@ sequelize.sync();//method to ensure all models (tables) are actually put onto th
 //This app.use statement MUST go above any routes
 app.use(express.json());
 
-app.use('/journal', journal);
+//Exposed Route
 app.use('/user', user);
+
+//Protected Route
+// app.use(require('./middleware/validate-session'));  ???Is this the line to delete 12.2.2???
+app.use('/journal', journal);
+
+
 
 //need to always put my code in-between the listen and the variable above
 
