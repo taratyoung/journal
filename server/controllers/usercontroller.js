@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 //let sequelize create a new record in the database (create)
 //USER SIGNUP
 router.post('/create', function (req, res) {
-
+console.log(req.body.user);
     User.create({
         // email: 'user@email.com', (hardcoded emaill)
         // password: 'password1234' (hardcoded password)
@@ -18,6 +18,7 @@ router.post('/create', function (req, res) {
     })
         .then(
             function createSuccess(user) {
+                console.log('create success');
                 // let token = jwt.sign({id: user.id, email: user.email}, 'i_am_secret', {expiresIn: 60 * 60 * 24}); //should never use jwt to store sensitive info so remove email: user.email
                 let token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 60 * 60 * 24 });
 

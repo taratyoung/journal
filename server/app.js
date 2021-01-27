@@ -8,7 +8,7 @@ let user = require('./controllers/usercontroller');
 
 sequelize.sync();//method to ensure all models (tables) are actually put onto the db if they're not there
 //sequelize.sync({force: true})
-
+app.use(require('./middleware/headers'));
 //This app.use statement MUST go above any routes
 app.use(express.json());
 
