@@ -50,7 +50,7 @@ router.get("/:title",  function (req, res) {
     let title = req.params.title;
 
     Journal.findAll({
-        where: { titie: title }
+        where: { title: title }
     })
     .then(journals => res.status(200).json(journals))
     .catch(err => res.status(500).json({error: err}))
